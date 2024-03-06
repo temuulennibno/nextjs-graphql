@@ -1,4 +1,5 @@
-import { TodoCreateInput, TodoUpdateInput, createTodo, deleteTodo, updateTodo } from "@/services/todo-service";
+import { TodoCreateInput, TodoUpdateInput } from "@/graphql/generated";
+import { createTodo, deleteTodo, updateTodo } from "@/services/todo-service";
 
 export const todoMutations = {
   createTodo: (_: unknown, { input }: { input: TodoCreateInput }) => createTodo(input),

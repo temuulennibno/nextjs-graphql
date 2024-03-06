@@ -1,118 +1,127 @@
-import { GraphQLResolveInfo } from "graphql";
-import { gql } from "@apollo/client";
-import * as Apollo from "@apollo/client";
+import { GraphQLResolveInfo } from 'graphql';
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends " $fragmentName" | "__typename" ? T[P] : never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string };
-  String: { input: string; output: string };
-  Boolean: { input: boolean; output: boolean };
-  Int: { input: number; output: number };
-  Float: { input: number; output: number };
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
 };
 
 export type Mutation = {
-  __typename?: "Mutation";
-  createTodo?: Maybe<Todo>;
+  __typename?: 'Mutation';
+  createTodo: Todo;
   createTodoCategory?: Maybe<TodoCategory>;
   deleteTodo?: Maybe<Todo>;
   deleteTodoCategory?: Maybe<Todo>;
-  updateTodo?: Maybe<Todo>;
+  updateTodo: Todo;
   updateTodoCategory?: Maybe<TodoCategory>;
 };
+
 
 export type MutationCreateTodoArgs = {
   input: TodoCreateInput;
 };
 
+
 export type MutationCreateTodoCategoryArgs = {
   input: TodoCategoryCreateInput;
 };
 
+
 export type MutationDeleteTodoArgs = {
-  id: Scalars["ID"]["input"];
+  id: Scalars['ID']['input'];
 };
 
+
 export type MutationDeleteTodoCategoryArgs = {
-  id: Scalars["ID"]["input"];
+  id: Scalars['ID']['input'];
 };
+
 
 export type MutationUpdateTodoArgs = {
   input: TodoUpdateInput;
 };
+
 
 export type MutationUpdateTodoCategoryArgs = {
   input: TodoCategoryUpdateInput;
 };
 
 export type Query = {
-  __typename?: "Query";
+  __typename?: 'Query';
   getCategories?: Maybe<Array<Maybe<Todo>>>;
   getCategory?: Maybe<Todo>;
   getTodo?: Maybe<Todo>;
-  getTodoList?: Maybe<Array<Maybe<Todo>>>;
+  getTodoList: Array<Todo>;
 };
+
 
 export type QueryGetCategoryArgs = {
-  id?: InputMaybe<Scalars["ID"]["input"]>;
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
+
 export type QueryGetTodoArgs = {
-  id?: InputMaybe<Scalars["ID"]["input"]>;
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type Todo = {
-  __typename?: "Todo";
+  __typename?: 'Todo';
   category?: Maybe<TodoCategory>;
-  completed: Scalars["Boolean"]["output"];
-  id: Scalars["ID"]["output"];
-  title: Scalars["String"]["output"];
+  completed: Scalars['Boolean']['output'];
+  id: Scalars['ID']['output'];
+  title: Scalars['String']['output'];
 };
 
 export type TodoCategory = {
-  __typename?: "TodoCategory";
-  id: Scalars["ID"]["output"];
-  title: Scalars["String"]["output"];
+  __typename?: 'TodoCategory';
+  id: Scalars['ID']['output'];
+  title: Scalars['String']['output'];
 };
 
 export type TodoCategoryCreateInput = {
-  title: Scalars["String"]["input"];
+  title: Scalars['String']['input'];
 };
 
 export type TodoCategoryUpdateInput = {
-  id: Scalars["ID"]["input"];
-  title?: InputMaybe<Scalars["String"]["input"]>;
+  id: Scalars['ID']['input'];
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type TodoCreateInput = {
-  categoryId?: InputMaybe<Scalars["ID"]["input"]>;
-  completed: Scalars["Boolean"]["input"];
-  title: Scalars["String"]["input"];
+  categoryId?: InputMaybe<Scalars['ID']['input']>;
+  completed: Scalars['Boolean']['input'];
+  title: Scalars['String']['input'];
 };
 
 export type TodoUpdateInput = {
-  categoryId?: InputMaybe<Scalars["ID"]["input"]>;
-  completed?: InputMaybe<Scalars["Boolean"]["input"]>;
-  id: Scalars["ID"]["input"];
-  title?: InputMaybe<Scalars["String"]["input"]>;
+  categoryId?: InputMaybe<Scalars['ID']['input']>;
+  completed?: InputMaybe<Scalars['Boolean']['input']>;
+  id: Scalars['ID']['input'];
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
+
+
 export type ResolverTypeWrapper<T> = Promise<T> | T;
+
 
 export type ResolverWithResolve<TResult, TParent, TContext, TArgs> = {
   resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
 };
-export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> =
-  | ResolverFn<TResult, TParent, TContext, TArgs>
-  | ResolverWithResolve<TResult, TParent, TContext, TArgs>;
+export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> = ResolverFn<TResult, TParent, TContext, TArgs> | ResolverWithResolve<TResult, TParent, TContext, TArgs>;
 
 export type ResolverFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
@@ -171,13 +180,15 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
   info: GraphQLResolveInfo
 ) => TResult | Promise<TResult>;
 
+
+
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  Boolean: ResolverTypeWrapper<Scalars["Boolean"]["output"]>;
-  ID: ResolverTypeWrapper<Scalars["ID"]["output"]>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+  ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
-  String: ResolverTypeWrapper<Scalars["String"]["output"]>;
+  String: ResolverTypeWrapper<Scalars['String']['output']>;
   Todo: ResolverTypeWrapper<Todo>;
   TodoCategory: ResolverTypeWrapper<TodoCategory>;
   TodoCategoryCreateInput: TodoCategoryCreateInput;
@@ -188,11 +199,11 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  Boolean: Scalars["Boolean"]["output"];
-  ID: Scalars["ID"]["output"];
+  Boolean: Scalars['Boolean']['output'];
+  ID: Scalars['ID']['output'];
   Mutation: {};
   Query: {};
-  String: Scalars["String"]["output"];
+  String: Scalars['String']['output'];
   Todo: Todo;
   TodoCategory: TodoCategory;
   TodoCategoryCreateInput: TodoCategoryCreateInput;
@@ -201,46 +212,33 @@ export type ResolversParentTypes = {
   TodoUpdateInput: TodoUpdateInput;
 };
 
-export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes["Mutation"] = ResolversParentTypes["Mutation"]> = {
-  createTodo?: Resolver<Maybe<ResolversTypes["Todo"]>, ParentType, ContextType, RequireFields<MutationCreateTodoArgs, "input">>;
-  createTodoCategory?: Resolver<
-    Maybe<ResolversTypes["TodoCategory"]>,
-    ParentType,
-    ContextType,
-    RequireFields<MutationCreateTodoCategoryArgs, "input">
-  >;
-  deleteTodo?: Resolver<Maybe<ResolversTypes["Todo"]>, ParentType, ContextType, RequireFields<MutationDeleteTodoArgs, "id">>;
-  deleteTodoCategory?: Resolver<Maybe<ResolversTypes["Todo"]>, ParentType, ContextType, RequireFields<MutationDeleteTodoCategoryArgs, "id">>;
-  updateTodo?: Resolver<Maybe<ResolversTypes["Todo"]>, ParentType, ContextType, RequireFields<MutationUpdateTodoArgs, "input">>;
-  updateTodoCategory?: Resolver<
-    Maybe<ResolversTypes["TodoCategory"]>,
-    ParentType,
-    ContextType,
-    RequireFields<MutationUpdateTodoCategoryArgs, "input">
-  >;
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  createTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationCreateTodoArgs, 'input'>>;
+  createTodoCategory?: Resolver<Maybe<ResolversTypes['TodoCategory']>, ParentType, ContextType, RequireFields<MutationCreateTodoCategoryArgs, 'input'>>;
+  deleteTodo?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, RequireFields<MutationDeleteTodoArgs, 'id'>>;
+  deleteTodoCategory?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, RequireFields<MutationDeleteTodoCategoryArgs, 'id'>>;
+  updateTodo?: Resolver<ResolversTypes['Todo'], ParentType, ContextType, RequireFields<MutationUpdateTodoArgs, 'input'>>;
+  updateTodoCategory?: Resolver<Maybe<ResolversTypes['TodoCategory']>, ParentType, ContextType, RequireFields<MutationUpdateTodoCategoryArgs, 'input'>>;
 };
 
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes["Query"] = ResolversParentTypes["Query"]> = {
-  getCategories?: Resolver<Maybe<Array<Maybe<ResolversTypes["Todo"]>>>, ParentType, ContextType>;
-  getCategory?: Resolver<Maybe<ResolversTypes["Todo"]>, ParentType, ContextType, Partial<QueryGetCategoryArgs>>;
-  getTodo?: Resolver<Maybe<ResolversTypes["Todo"]>, ParentType, ContextType, Partial<QueryGetTodoArgs>>;
-  getTodoList?: Resolver<Maybe<Array<Maybe<ResolversTypes["Todo"]>>>, ParentType, ContextType>;
+export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  getCategories?: Resolver<Maybe<Array<Maybe<ResolversTypes['Todo']>>>, ParentType, ContextType>;
+  getCategory?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, Partial<QueryGetCategoryArgs>>;
+  getTodo?: Resolver<Maybe<ResolversTypes['Todo']>, ParentType, ContextType, Partial<QueryGetTodoArgs>>;
+  getTodoList?: Resolver<Array<ResolversTypes['Todo']>, ParentType, ContextType>;
 };
 
-export type TodoResolvers<ContextType = any, ParentType extends ResolversParentTypes["Todo"] = ResolversParentTypes["Todo"]> = {
-  category?: Resolver<Maybe<ResolversTypes["TodoCategory"]>, ParentType, ContextType>;
-  completed?: Resolver<ResolversTypes["Boolean"], ParentType, ContextType>;
-  id?: Resolver<ResolversTypes["ID"], ParentType, ContextType>;
-  title?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+export type TodoResolvers<ContextType = any, ParentType extends ResolversParentTypes['Todo'] = ResolversParentTypes['Todo']> = {
+  category?: Resolver<Maybe<ResolversTypes['TodoCategory']>, ParentType, ContextType>;
+  completed?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type TodoCategoryResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes["TodoCategory"] = ResolversParentTypes["TodoCategory"]
-> = {
-  id?: Resolver<ResolversTypes["ID"], ParentType, ContextType>;
-  title?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+export type TodoCategoryResolvers<ContextType = any, ParentType extends ResolversParentTypes['TodoCategory'] = ResolversParentTypes['TodoCategory']> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -251,55 +249,56 @@ export type Resolvers<ContextType = any> = {
   TodoCategory?: TodoCategoryResolvers<ContextType>;
 };
 
-export type GetTodoListQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetTodoListQuery = {
-  __typename?: "Query";
-  getTodoList?: Array<{ __typename?: "Todo"; id: string; title: string; completed: boolean } | null> | null;
-};
+export type TodoFieldsFragment = { __typename?: 'Todo', id: string, title: string, completed: boolean };
+
+export type GetTodoListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetTodoListQuery = { __typename?: 'Query', getTodoList: Array<{ __typename?: 'Todo', id: string, title: string, completed: boolean }> };
 
 export type GetTodoQueryVariables = Exact<{
-  getTodoId?: InputMaybe<Scalars["ID"]["input"]>;
+  getTodoId?: InputMaybe<Scalars['ID']['input']>;
 }>;
 
-export type GetTodoQuery = { __typename?: "Query"; getTodo?: { __typename?: "Todo"; id: string; title: string; completed: boolean } | null };
+
+export type GetTodoQuery = { __typename?: 'Query', getTodo?: { __typename?: 'Todo', id: string, title: string, completed: boolean } | null };
 
 export type CreateTodoMutationVariables = Exact<{
   input: TodoCreateInput;
 }>;
 
-export type CreateTodoMutation = {
-  __typename?: "Mutation";
-  createTodo?: { __typename?: "Todo"; id: string; title: string; completed: boolean } | null;
-};
+
+export type CreateTodoMutation = { __typename?: 'Mutation', createTodo: { __typename?: 'Todo', id: string, title: string, completed: boolean } };
 
 export type DeleteTodoMutationVariables = Exact<{
-  id: Scalars["ID"]["input"];
+  id: Scalars['ID']['input'];
 }>;
 
-export type DeleteTodoMutation = {
-  __typename?: "Mutation";
-  deleteTodo?: { __typename?: "Todo"; id: string; title: string; completed: boolean } | null;
-};
+
+export type DeleteTodoMutation = { __typename?: 'Mutation', deleteTodo?: { __typename?: 'Todo', id: string, title: string, completed: boolean } | null };
 
 export type UpdateTodoMutationVariables = Exact<{
   input: TodoUpdateInput;
 }>;
 
-export type UpdateTodoMutation = {
-  __typename?: "Mutation";
-  updateTodo?: { __typename?: "Todo"; id: string; title: string; completed: boolean } | null;
-};
 
+export type UpdateTodoMutation = { __typename?: 'Mutation', updateTodo: { __typename?: 'Todo', id: string, title: string, completed: boolean } };
+
+export const TodoFieldsFragmentDoc = gql`
+    fragment TodoFields on Todo {
+  id
+  title
+  completed
+}
+    `;
 export const GetTodoListDocument = gql`
-  query GetTodoList {
-    getTodoList {
-      id
-      title
-      completed
-    }
+    query GetTodoList {
+  getTodoList {
+    ...TodoFields
   }
-`;
+}
+    ${TodoFieldsFragmentDoc}`;
 
 /**
  * __useGetTodoListQuery__
@@ -317,30 +316,28 @@ export const GetTodoListDocument = gql`
  * });
  */
 export function useGetTodoListQuery(baseOptions?: Apollo.QueryHookOptions<GetTodoListQuery, GetTodoListQueryVariables>) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetTodoListQuery, GetTodoListQueryVariables>(GetTodoListDocument, options);
-}
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTodoListQuery, GetTodoListQueryVariables>(GetTodoListDocument, options);
+      }
 export function useGetTodoListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTodoListQuery, GetTodoListQueryVariables>) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetTodoListQuery, GetTodoListQueryVariables>(GetTodoListDocument, options);
-}
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTodoListQuery, GetTodoListQueryVariables>(GetTodoListDocument, options);
+        }
 export function useGetTodoListSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetTodoListQuery, GetTodoListQueryVariables>) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<GetTodoListQuery, GetTodoListQueryVariables>(GetTodoListDocument, options);
-}
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetTodoListQuery, GetTodoListQueryVariables>(GetTodoListDocument, options);
+        }
 export type GetTodoListQueryHookResult = ReturnType<typeof useGetTodoListQuery>;
 export type GetTodoListLazyQueryHookResult = ReturnType<typeof useGetTodoListLazyQuery>;
 export type GetTodoListSuspenseQueryHookResult = ReturnType<typeof useGetTodoListSuspenseQuery>;
 export type GetTodoListQueryResult = Apollo.QueryResult<GetTodoListQuery, GetTodoListQueryVariables>;
 export const GetTodoDocument = gql`
-  query GetTodo($getTodoId: ID) {
-    getTodo(id: $getTodoId) {
-      id
-      title
-      completed
-    }
+    query GetTodo($getTodoId: ID) {
+  getTodo(id: $getTodoId) {
+    ...TodoFields
   }
-`;
+}
+    ${TodoFieldsFragmentDoc}`;
 
 /**
  * __useGetTodoQuery__
@@ -359,30 +356,28 @@ export const GetTodoDocument = gql`
  * });
  */
 export function useGetTodoQuery(baseOptions?: Apollo.QueryHookOptions<GetTodoQuery, GetTodoQueryVariables>) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetTodoQuery, GetTodoQueryVariables>(GetTodoDocument, options);
-}
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTodoQuery, GetTodoQueryVariables>(GetTodoDocument, options);
+      }
 export function useGetTodoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTodoQuery, GetTodoQueryVariables>) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetTodoQuery, GetTodoQueryVariables>(GetTodoDocument, options);
-}
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTodoQuery, GetTodoQueryVariables>(GetTodoDocument, options);
+        }
 export function useGetTodoSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetTodoQuery, GetTodoQueryVariables>) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<GetTodoQuery, GetTodoQueryVariables>(GetTodoDocument, options);
-}
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetTodoQuery, GetTodoQueryVariables>(GetTodoDocument, options);
+        }
 export type GetTodoQueryHookResult = ReturnType<typeof useGetTodoQuery>;
 export type GetTodoLazyQueryHookResult = ReturnType<typeof useGetTodoLazyQuery>;
 export type GetTodoSuspenseQueryHookResult = ReturnType<typeof useGetTodoSuspenseQuery>;
 export type GetTodoQueryResult = Apollo.QueryResult<GetTodoQuery, GetTodoQueryVariables>;
 export const CreateTodoDocument = gql`
-  mutation CreateTodo($input: TodoCreateInput!) {
-    createTodo(input: $input) {
-      id
-      title
-      completed
-    }
+    mutation CreateTodo($input: TodoCreateInput!) {
+  createTodo(input: $input) {
+    ...TodoFields
   }
-`;
+}
+    ${TodoFieldsFragmentDoc}`;
 export type CreateTodoMutationFn = Apollo.MutationFunction<CreateTodoMutation, CreateTodoMutationVariables>;
 
 /**
@@ -403,21 +398,19 @@ export type CreateTodoMutationFn = Apollo.MutationFunction<CreateTodoMutation, C
  * });
  */
 export function useCreateTodoMutation(baseOptions?: Apollo.MutationHookOptions<CreateTodoMutation, CreateTodoMutationVariables>) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<CreateTodoMutation, CreateTodoMutationVariables>(CreateTodoDocument, options);
-}
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateTodoMutation, CreateTodoMutationVariables>(CreateTodoDocument, options);
+      }
 export type CreateTodoMutationHookResult = ReturnType<typeof useCreateTodoMutation>;
 export type CreateTodoMutationResult = Apollo.MutationResult<CreateTodoMutation>;
 export type CreateTodoMutationOptions = Apollo.BaseMutationOptions<CreateTodoMutation, CreateTodoMutationVariables>;
 export const DeleteTodoDocument = gql`
-  mutation DeleteTodo($id: ID!) {
-    deleteTodo(id: $id) {
-      id
-      title
-      completed
-    }
+    mutation DeleteTodo($id: ID!) {
+  deleteTodo(id: $id) {
+    ...TodoFields
   }
-`;
+}
+    ${TodoFieldsFragmentDoc}`;
 export type DeleteTodoMutationFn = Apollo.MutationFunction<DeleteTodoMutation, DeleteTodoMutationVariables>;
 
 /**
@@ -438,21 +431,21 @@ export type DeleteTodoMutationFn = Apollo.MutationFunction<DeleteTodoMutation, D
  * });
  */
 export function useDeleteTodoMutation(baseOptions?: Apollo.MutationHookOptions<DeleteTodoMutation, DeleteTodoMutationVariables>) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<DeleteTodoMutation, DeleteTodoMutationVariables>(DeleteTodoDocument, options);
-}
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteTodoMutation, DeleteTodoMutationVariables>(DeleteTodoDocument, options);
+      }
 export type DeleteTodoMutationHookResult = ReturnType<typeof useDeleteTodoMutation>;
 export type DeleteTodoMutationResult = Apollo.MutationResult<DeleteTodoMutation>;
 export type DeleteTodoMutationOptions = Apollo.BaseMutationOptions<DeleteTodoMutation, DeleteTodoMutationVariables>;
 export const UpdateTodoDocument = gql`
-  mutation UpdateTodo($input: TodoUpdateInput!) {
-    updateTodo(input: $input) {
-      id
-      title
-      completed
-    }
+    mutation UpdateTodo($input: TodoUpdateInput!) {
+  updateTodo(input: $input) {
+    id
+    title
+    completed
   }
-`;
+}
+    `;
 export type UpdateTodoMutationFn = Apollo.MutationFunction<UpdateTodoMutation, UpdateTodoMutationVariables>;
 
 /**
@@ -473,9 +466,9 @@ export type UpdateTodoMutationFn = Apollo.MutationFunction<UpdateTodoMutation, U
  * });
  */
 export function useUpdateTodoMutation(baseOptions?: Apollo.MutationHookOptions<UpdateTodoMutation, UpdateTodoMutationVariables>) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<UpdateTodoMutation, UpdateTodoMutationVariables>(UpdateTodoDocument, options);
-}
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateTodoMutation, UpdateTodoMutationVariables>(UpdateTodoDocument, options);
+      }
 export type UpdateTodoMutationHookResult = ReturnType<typeof useUpdateTodoMutation>;
 export type UpdateTodoMutationResult = Apollo.MutationResult<UpdateTodoMutation>;
 export type UpdateTodoMutationOptions = Apollo.BaseMutationOptions<UpdateTodoMutation, UpdateTodoMutationVariables>;

@@ -4,8 +4,6 @@ import { nanoid } from "nanoid";
 
 const todoList: Todo[] = [{ id: nanoid(), title: "Learn Next.js", completed: false }];
 
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
 export const getTodoList = async (): Promise<Todo[]> => {
   return todoList;
 };

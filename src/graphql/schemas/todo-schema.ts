@@ -22,12 +22,12 @@ export const todoTypeDefs = gql`
   }
 
   type Query {
-    getTodoList: [Todo]
+    getTodoList: [Todo!]!
     getTodo(id: ID): Todo
   }
   type Mutation {
-    createTodo(input: TodoCreateInput!): Todo
-    updateTodo(input: TodoUpdateInput!): Todo
+    createTodo(input: TodoCreateInput!): Todo!
+    updateTodo(input: TodoUpdateInput!): Todo!
     deleteTodo(id: ID!): Todo
   }
 `;

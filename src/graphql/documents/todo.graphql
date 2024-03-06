@@ -1,32 +1,29 @@
+fragment TodoFields on Todo {
+  id
+  title
+  completed
+}
 query GetTodoList {
   getTodoList {
-    id
-    title
-    completed
+    ...TodoFields
   }
 }
 
 query GetTodo($getTodoId: ID) {
   getTodo(id: $getTodoId) {
-    id
-    title
-    completed
+    ...TodoFields
   }
 }
 
 mutation CreateTodo($input: TodoCreateInput!) {
   createTodo(input: $input) {
-    id
-    title
-    completed
+    ...TodoFields
   }
 }
 
 mutation DeleteTodo($id: ID!) {
   deleteTodo(id: $id) {
-    id
-    title
-    completed
+    ...TodoFields
   }
 }
 
