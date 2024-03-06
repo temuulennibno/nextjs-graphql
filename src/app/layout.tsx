@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const client = new ApolloClient({
-    uri: "http://localhost:3000/api/graphql",
+    uri: "/api/graphql",
     // uri: "/api/graphql",
     cache: new InMemoryCache(),
   });
