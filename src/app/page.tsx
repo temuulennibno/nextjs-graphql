@@ -1,18 +1,8 @@
 "use client";
 
-import { Todo } from "@/services/todo-service";
+import { GetTodoListQuery, useGetTodoListQuery } from "@/graphql/generated";
 import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
-
-const GET_TODO_LIST = gql`
-  query GetTodoList {
-    getTodoList {
-      id
-      title
-      completed
-    }
-  }
-`;
 
 const GET_TODO = gql`
   query Query($id: ID) {
@@ -37,7 +27,7 @@ const CREATE_TODO = gql`
 export default function Home() {
   const [title, setTitle] = useState("");
 
-  const { data, loading, error } = useQuery(GET_TODO_LIST);
+  const { data, loading, error } = useGetTodoListQuery();
   const [createTodo, { data: createdData, loading: createLoading, error: createError }] = useMutation(CREATE_TODO);
   const [getTodo, { data: getTodoData, loading: getTodoLoading, error: getTodoError }] = useLazyQuery(GET_TODO);
 
@@ -45,7 +35,7 @@ export default function Home() {
 
   if (loading) return <>Loading...</>;
   if (error) return <>{error.message}...</>;
-  const { getTodoList } = data;
+  const { getTodoList } = data as GetTodoListQuery;
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -56,7 +46,6 @@ export default function Home() {
           completed: false,
         },
       },
-      refetchQueries: [{ query: GET_TODO_LIST }],
     });
   };
 
@@ -72,7 +61,7 @@ export default function Home() {
     <div>
       <h1>{getTodoData?.getTodo && <>{getTodoData.getTodo.title}</>}</h1>
       <ul className="list-disc pl-5 mb-5">
-        {getTodoList.map((todo: Todo) => (
+        {getTodoList?.map((todo: Todo) => (
           <li key={todo.id} className="cursor-pointer hover:underline" onClick={() => handleItemClick(todo.id)}>
             {todo.id}
           </li>

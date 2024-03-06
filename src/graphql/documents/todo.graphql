@@ -1,0 +1,39 @@
+query GetTodoList {
+  getTodoList {
+    id
+    title
+    completed
+  }
+}
+
+query GetTodo($getTodoId: ID) {
+  getTodo(id: $getTodoId) {
+    id
+    title
+    completed
+  }
+}
+
+mutation CreateTodo($input: TodoCreateInput!) {
+  createTodo(input: $input) {
+    id
+    title
+    completed
+  }
+}
+
+mutation DeleteTodo($id: ID!) {
+  deleteTodo(id: $id) {
+    id
+    title
+    completed
+  }
+}
+
+mutation UpdateTodo($input: TodoUpdateInput!) {
+  updateTodo(input: $input) {
+    id
+    title
+    completed
+  }
+}
