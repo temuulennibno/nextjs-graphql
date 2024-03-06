@@ -1,6 +1,6 @@
 "use client";
 
-import { Todo } from "@/services/todo-service";
+import { Todo } from "@/graphql/generated";
 import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { useState } from "react";
 
